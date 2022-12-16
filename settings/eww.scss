@@ -6,6 +6,7 @@ $background: rgba(40, 40, 40, 0.95);
 $border: rgba(20, 20, 20, 1);
 $foreground: rgb(235, 219, 178);
 $accent: #98971a;
+$background-lighter: rgba(70, 70, 70, 0.95);
 
 .settings {
 }
@@ -13,7 +14,7 @@ $accent: #98971a;
 
 .contents{  
   font-family: Overpass, Noto Fonts Emoji;
-  background-color: $background;
+  background-color: $background-lighter;
   color: $foreground;
   font-size: 10pt;
   border-bottom-left-radius: 10px;

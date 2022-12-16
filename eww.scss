@@ -41,17 +41,29 @@ $accent: #98971a;
   padding-right: 25px;
 }
 
-.tray-icon{
-  // padding-right: 10px;
+.settings{
+  margin-right: -5px
+}
+
+.temps{
+  padding-right: 10px;
 }
 
 .clock{
 }
 
+tooltip{
+  font-size: 11pt;
+  padding: 40px;
+  margin: 20px;
+  border-radius: 7px;
+  background-color: $background-lighter;
+}
+
 .settings-button {
   min-height: 25px;
-  padding: 2px 10px 2px 5px;
-  margin: 5px;
+  padding: 5px 10px 2px 7px;
+  margin: 5px -5px 5px 5px;
   border-radius: 10px;
   margin-right: 10px;
 }
@@ -64,11 +76,12 @@ button:hover {
   background-color: $background-lighter;
 }
 button:focus {
-  background-color: $acce;
+  background-color: $accent;
 }
 
 
-.fill-bar scale highlight {
+// battery
+.battery-bar scale highlight {
   all: unset;
   background-color: $accent;
   border-radius: 5px;
@@ -76,10 +89,23 @@ button:focus {
   border-bottom-right-radius: 0;
 }
 
-.fill-bar scale trough {
+.battery-bar-full scale highlight {
+  all: unset;
+  background-color: $accent;
+  border-radius: 5px;
+}
+
+.battery-bar scale trough, .battery-bar-full scale trough {
   all: unset;
   background-color: $background-lighter;
   min-height: 20px;
   min-width: 80px;
   border-radius: 5px;
 }
+
+.battery-bar .charging, .battery-bar-full{
+  min-width: 10px;
+  margin-right: 5px;
+}
+
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+## Get battery info
+ISCHARGE="$(acpi | awk -F ' ' 'END {print $3}' | tr -d \,) "
+
+if [ "$ISCHARGE" == "Charging " ]; then
+    echo true
+else
+	echo false
+fi
+

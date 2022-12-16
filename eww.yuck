@@ -43,7 +43,7 @@
     :spacing 30
     (box 
       (label 
-        :class "infotext" 
+        :class "temps" 
         :text CPUTEMP
       )
     )
@@ -54,11 +54,19 @@
 ;; battery
 (defpoll BATICON :interval "5s" `scripts/battery --icon`)
 (defpoll BATPERC :interval "5s" `scripts/battery --perc`)
+(defpoll BATCHARGE :interval "5s" `scripts/is-charging`)
+
 
 (defwidget battery []
   (box 
-    :class "fill-bar"
+    :class { BATPERC > 98 ? "battery-bar-full" : "battery-bar"}
     :spacing 0
+    :tooltip "battery ${BATPERC}% full"
+    (label 
+      :halign "end"
+      :class { BATCHARGE ? "charging" : "not-charging"}
+      :text "${BATCHARGE ? '⚡' : ''}"
+    )
     (scale
       :min 0
       :max 100
@@ -83,7 +91,7 @@
 ;; system
 (defwidget system [] 
   (box 
-    :class "dockbox"
+    :class "settings"
     :space-evenly false 
     :halign "end"
     :hexpand true
