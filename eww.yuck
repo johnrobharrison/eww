@@ -66,11 +66,16 @@
   :interval "5s" 
   `scripts/battery/time-remaining`)
 
+(defpoll BATCLASS 
+  :interval "10s" 
+  `scripts/battery/battery-class`)
 
 
 (defwidget battery []
   (box 
-    :class { BATPERC > 97 ? "battery-bar-full" : "battery-bar"}
+    :class { 
+        (BATPERC > 97 ? "battery-bar-full" : "battery-bar" )
+    }
     :spacing 0
     :tooltip "battery ${BATPERC}% ${BATTIMEREMAIN}"
     (label 
@@ -141,5 +146,6 @@
     :width "100%"
     :anchor "top center")
   (bar))
+
 
   

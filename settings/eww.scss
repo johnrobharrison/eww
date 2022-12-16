@@ -29,13 +29,26 @@ $background-lighter: rgba(70, 70, 70, 0.95);
   margin-right: 20px;
 }
 
-.volume-bar scale highlight {
+.backlight-icon{
+  background-image: url('icons/brightness.png');
+  min-height: 32px;
+  min-width: 32px;
+  margin-right: 20px;
+}
+
+.scroller{
+  margin-bottom: 20px;
+}
+
+
+
+.scroller scale highlight {
   all: unset;
   background-color: $accent;
   border-radius: 5px;
 }
 
-.volume-bar scale trough {
+.scroller scale trough {
   all: unset;
   background-color: $background-lighter;
   min-height: 20px;

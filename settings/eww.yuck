@@ -6,7 +6,7 @@
 
 (defwidget volume []
   (box 
-    :class "volume-bar"
+    :class "scroller"
     :spacing 0
     :space-evenly false
     (label 
@@ -25,12 +25,38 @@
 )
 
 
+;; BACKLIGHT
+(defpoll BLPERCENT 
+  :interval "10s" 
+  `light`)
+
+(defwidget backlight []
+  (box 
+    :class "scroller"
+    :spacing 0
+    :space-evenly false
+    (label 
+      :halign "end"
+      :class "backlight-icon"
+    )
+    (scale
+      :min 0
+      :max 100
+      :value BLPERCENT
+      :active "true"
+      :onchange "light -S {}"
+    )
+  )
+)
+
+
 
 (defwidget container []
   (box 
     :class "container" 
     :orientation "v"
     (volume)
+    (backlight)
   )
 )
 

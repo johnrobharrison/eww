@@ -3,11 +3,13 @@
 }
 
 $background-lighter: rgba(70, 70, 70, 0.95);
-$background: rgba(40, 40, 40, 0.95);
+$background: rgba(40, 40, 40, 1);
 $border: rgba(20, 20, 20, 1);
 $foreground: rgb(235, 219, 178);
 $accent: #98971a;
 
+$warning: #caa500;
+$danger: #ce4c48;
 
 .main_bar_eDP-1 {
   font-family: Overpass, Noto Fonts Emoji;
@@ -84,8 +86,12 @@ button:focus {
 }
 
 
+
+
+
 // battery
-.battery-bar scale highlight {
+.battery-bar scale highlight 
+{
   all: unset;
   background-color: $accent;
   border-radius: 5px;
@@ -93,13 +99,33 @@ button:focus {
   border-bottom-right-radius: 0;
 }
 
+.battery-bar-warning scale highlight 
+{
+  all: unset;
+  background-color: $warning;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.battery-bar-danger scale highlight 
+{
+  all: unset;
+  background-color: $danger;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
 .battery-bar-full scale highlight {
   all: unset;
   background-color: $accent;
   border-radius: 5px;
 }
 
-.battery-bar scale trough, .battery-bar-full scale trough {
+.battery-bar scale trough, 
+.battery-bar-full scale trough 
+.battery-bar-warning scale trough 
+.battery-bar-danger scale trough 
+{
   all: unset;
   background-color: $background-lighter;
   min-height: 20px;
@@ -107,7 +133,11 @@ button:focus {
   border-radius: 5px;
 }
 
-.battery-bar .charging, .battery-bar-full .charging{
+.battery-bar .charging, 
+.battery-bar-full .charging,
+.battery-bar-warning .charging,
+.battery-bar-danger .charging
+{
   min-width: 10px;
   margin-right: 5px;
 }
