@@ -2,7 +2,7 @@
 (defpoll time :interval "10s" "date '+ %Y-%m-%d  %H:%M'")
 (defwidget clock []
   (box 
-    :class "clock" 
+    :class "contents" 
     time
   )
 )
@@ -10,6 +10,7 @@
 ;; containing window
 (defwindow settings
   :monitor 0
+  :class "contents"
   :stacking 'fg'
   :exclusive true
   :windowtype "dock"

@@ -108,7 +108,7 @@
 
 
 
-(defvar wp-focused "")
+(defvar wp-focused "1")
 
 
 (defvar wp1-name "1" )
