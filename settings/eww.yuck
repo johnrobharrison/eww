@@ -1,5 +1,5 @@
 ;; clock
-(defpoll time :interval "10s" "date '+ %Y-%m-%d  %H:%M'")
+(defpoll time :interval "2s" "fortune")
 (defwidget clock []
   (box 
     :class "contents" 

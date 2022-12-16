@@ -54,21 +54,20 @@
 ;; battery
 (defpoll BATICON :interval "5s" `scripts/battery --icon`)
 (defpoll BATPERC :interval "5s" `scripts/battery --perc`)
+
 (defwidget battery []
   (box 
-    :spacing 8 
-    (image 
-      :path "${BATICON}" 
-      :image-height 30
-      :class "tray-icon"
-    )
-    (label 
-      :class "infotext" 
-      :halign "start" 
-      :text BATPERC
+    :class "fill-bar"
+    :spacing 0
+    (scale
+      :min 0
+      :max 100
+      :value BATPERC
     )
   )
 )
+
+
 
 
 ;; clock
@@ -89,7 +88,7 @@
     :halign "end"
     :hexpand true
     (box 
-      :spacing 30
+      :spacing 10
       :space-evenly "false" 
 
       ;; cpu temp
