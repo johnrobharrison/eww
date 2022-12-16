@@ -1,0 +1,57 @@
+* {
+  all: unset;
+}
+
+$background: rgba(40, 40, 40, 0.95);
+$border: rgba(20, 20, 20, 1);
+$foreground: rgb(235, 219, 178);
+$accent: #98971a;
+
+
+.main_bar_eDP-1 {
+  font-family: Overpass, Noto Fonts Emoji;
+
+}
+
+.eww-bar{
+  background-color: $background;
+  color: $foreground;
+  font-size: 10pt;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);  
+  margin-bottom: 2px;
+}
+
+// title
+.active-window{
+  margin-left: 20px;
+  padding: 12px;
+}
+
+// workspaces
+.wp-focused{
+  background-color: $accent;
+  padding-left: 25px;
+  padding-right: 25px;
+  color: black;
+}
+.wp-visible{
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.wp{
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.tray-icon{
+  padding-right: 10px;
+}
+
+.clock{
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.settings-button{
+  // background-color: #98971a;
+}

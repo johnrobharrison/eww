@@ -1,0 +1,126 @@
+(include "./sway_widget.yuck")
+
+;; brightness
+(defpoll BACKLIGHT :interval "5s" `light -G`)
+
+
+;; bar config
+(defwidget bar []
+  (box 
+    :class "eww-bar"
+    :space-evenly false 
+    (box 
+      :space-evenly false 
+      :halign "start"
+      :hexpand true
+      (left_eDP-1)
+      (title)
+    )
+    (system)
+  )
+)
+
+
+;; window title
+(defpoll TITLE :interval "50ms" `scripts/title`)
+(defwidget title []
+ (box 
+    :spacing 30
+    :vexpand true
+    (box 
+      (label 
+        :class "active-window" 
+        :text TITLE
+      )
+    )
+  )
+)
+
+;; cpu temp
+(defpoll CPUTEMP :interval "5s" `scripts/temps --cpu`)
+(defwidget cputemp [] 
+ (box 
+    :spacing 30
+    (box 
+      (label 
+        :class "infotext" 
+        :text CPUTEMP
+      )
+    )
+  )
+)
+
+
+;; battery
+(defpoll BATICON :interval "5s" `scripts/battery --icon`)
+(defpoll BATPERC :interval "5s" `scripts/battery --perc`)
+(defwidget battery []
+  (box 
+    :spacing 8 
+    (image 
+      :path "${BATICON}" 
+      :image-height 30
+      :class "tray-icon"
+    )
+    (label 
+      :class "infotext" 
+      :halign "start" 
+      :text BATPERC
+    )
+  )
+)
+
+
+;; clock
+(defpoll time :interval "10s" "date '+ %Y-%m-%d  %H:%M'")
+(defwidget clock []
+  (box 
+    :class "clock" 
+    time
+  )
+)
+
+
+;; system
+(defwidget system [] 
+  (box 
+    :class "dockbox"
+    :space-evenly false 
+    :halign "end"
+    :hexpand true
+    (box 
+      :spacing 30
+      :space-evenly "false" 
+
+      ;; cpu temp
+      (cputemp)
+
+      ;; battery
+      (battery)
+      
+      ;; clock
+      (button
+        :class "settings-button"
+        :onclick '/home/shin/.config/eww/settings/launch-settings.sh'
+        (clock)
+      )
+    )
+  )
+)
+
+
+;; containing window
+(defwindow main_bar_eDP-1
+  :monitor 0
+  :exclusive true
+  :windowtype "dock"
+	:focusable false
+  :geometry (geometry 
+    :x "0%"
+    :y "0%"
+    :height: "30px"
+    :width "100%"
+    :anchor "top center")
+  (bar))
+
+  

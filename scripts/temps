@@ -1,0 +1,10 @@
+#!/bin/bash
+
+GPU="$(sensors -j | jq '."coretemp-isa-0000"."Core 0"."temp2_input"')"
+CPU="$(sensors -j | jq '."coretemp-isa-0000"."Core 0"."temp2_input"')"
+
+if [[ $1 == '--gpu' ]]; then
+	echo "${GPU}°"
+elif [[ $1 == '--cpu' ]]; then
+	echo "${CPU}°"
+fi

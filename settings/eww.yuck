@@ -1,0 +1,23 @@
+;; clock
+(defpoll time :interval "10s" "date '+ %Y-%m-%d  %H:%M'")
+(defwidget clock []
+  (box 
+    :class "clock" 
+    time
+  )
+)
+
+;; containing window
+(defwindow settings
+  :monitor 0
+  :stacking 'fg'
+  :exclusive true
+  :windowtype "dock"
+	:focusable false
+  :geometry (geometry 
+              :x "0"
+              :y "0"
+              :width "100px"
+              :height "50px"
+              :anchor "top right")
+  (clock))

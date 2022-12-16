@@ -1,0 +1,8 @@
+#!/bin/bash
+title="$(swaymsg -t get_tree \
+    | jq '.nodes[].nodes[].nodes[] | {name, focused} | select(.focused) | .name'  \
+    | tr -d \" \
+    | cut -c 1-100 
+    )"
+
+echo "${title}"
