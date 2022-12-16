@@ -5,11 +5,12 @@
 $background: rgba(40, 40, 40, 1);
 $border: rgba(20, 20, 20, 1);
 $foreground: rgb(235, 219, 178);
+$foreground-darker: rgba(192, 182, 156, 0.8);
 $accent: #98971a;
 $background-lighter: rgba(70, 70, 70, 0.95);
 
 
-.container{  
+.container {
   font-family: Overpass, Noto Fonts Emoji;
   background-color: $background;
   color: $foreground;
@@ -18,25 +19,25 @@ $background-lighter: rgba(70, 70, 70, 0.95);
   border-bottom-right-radius: 10px;
   padding: 20px;
   margin: 0px 0px 50px 50px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 
-.volume-icon{
+.volume-icon {
   background-image: url('icons/speaker.png');
   min-height: 32px;
   min-width: 32px;
   margin-right: 20px;
 }
 
-.backlight-icon{
+.backlight-icon {
   background-image: url('icons/brightness.png');
   min-height: 32px;
   min-width: 32px;
   margin-right: 20px;
 }
 
-.scroller{
+.scroller {
   margin-bottom: 20px;
 }
 
@@ -54,4 +55,34 @@ $background-lighter: rgba(70, 70, 70, 0.95);
   min-height: 20px;
   min-width: 300px;
   border-radius: 5px;
+}
+
+
+
+
+// Calendar
+.cal {
+  background-color: $background-lighter;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+calender {
+  color: $foreground-darker;
+}
+
+calendar:selected {
+  color: $accent;
+}
+
+calendar.header {
+  color: $accent;
+}
+
+calendar.highlight {
+  color: $accent;
+}
+
+calendar:indeterminate {
+  color: $foreground-darker;
 }
