@@ -18,7 +18,7 @@
       (left_eDP-1)
       (title)
     )
-    (system)
+    (settings)
   )
 )
 
@@ -27,7 +27,6 @@
 (defpoll TITLE :interval "50ms" `scripts/title`)
 (defwidget title []
  (box 
-    :spacing 30
     :vexpand true
     (box 
       (label 
@@ -44,7 +43,6 @@
   `scripts/temps --cpu`)
 (defwidget cputemp [] 
  (box 
-    :spacing 30
     (box 
       (label 
         :class "temps" 
@@ -57,11 +55,11 @@
 
 ;; battery
 (defpoll BATPERC 
-  :interval "5s" 
+  :interval "10s" 
   `scripts/battery/battery-percent`)
 
 (defpoll BATCHARGE 
-  :interval "5s" 
+  :interval "3s" 
   `scripts/battery/is-charging`)
 
 (defpoll BATTIMEREMAIN 
@@ -77,8 +75,8 @@
     :tooltip "battery ${BATPERC}% ${BATTIMEREMAIN}"
     (label 
       :halign "end"
-      :class { BATCHARGE ? "charging" : "not-charging"}
-      :text "${BATCHARGE ? '⚡' : ''}"
+      :class { BATCHARGE == "Discharging" ? "not-charging" : "charging"}
+      :text "${ BATCHARGE == "Discharging" ? '' : '⚡'}"
     )
     (scale
       :min 0
@@ -101,22 +99,24 @@
 )
 
 
-;; system
-(defwidget system [] 
+;; settings
+(defpoll SETTINGSOPEN 
+  :interval "1s" 
+  `settings/settings-opened`)
+
+(defwidget settings [] 
   (box 
     :class "settings"
-    :space-evenly false 
     :halign "end"
-    :hexpand true
     (box 
       :spacing 10
       :space-evenly "false" 
 
-      ;; cpu temp
-      (cputemp)
-
       ;; battery
       (battery)
+
+      ;; cpu temp
+      (cputemp)
       
       ;; clock
       (button

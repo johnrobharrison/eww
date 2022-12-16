@@ -1,0 +1,4 @@
+#!/bin/bash
+if [ -f "/home/shin/.config/eww/settings/touch" ]; then
+ echo true
+fi

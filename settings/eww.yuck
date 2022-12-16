@@ -1,9 +1,36 @@
-;; clock
-(defpoll time :interval "2s" "fortune")
-(defwidget clock []
+;; volume
+(defpoll VOLPERCENT 
+  :interval "10s" 
+  `pamixer --get-volume`)
+
+
+(defwidget volume []
   (box 
-    :class "contents" 
-    time
+    :class "volume-bar"
+    :spacing 0
+    :space-evenly false
+    (label 
+      :halign "end"
+      :class "volume-icon"
+      :onclick "pamixer --toggle-mute"
+    )
+    (scale
+      :min 0
+      :max 100
+      :value VOLPERCENT
+      :active "true"
+      :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+    )
+  )
+)
+
+
+
+(defwidget container []
+  (box 
+    :class "container" 
+    :orientation "v"
+    (volume)
   )
 )
 
@@ -21,4 +48,4 @@
               :width "100px"
               :height "50px"
               :anchor "top right")
-  (clock))
+  (container))
