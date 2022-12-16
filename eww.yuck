@@ -1,7 +1,9 @@
 (include "./sway_widget.yuck")
 
 ;; brightness
-(defpoll BACKLIGHT :interval "5s" `light -G`)
+(defpoll BACKLIGHT 
+  :interval "5s" 
+  `light -G`)
 
 
 ;; bar config
@@ -37,7 +39,9 @@
 )
 
 ;; cpu temp
-(defpoll CPUTEMP :interval "5s" `scripts/temps --cpu`)
+(defpoll CPUTEMP 
+  :interval "5s" 
+  `scripts/temps --cpu`)
 (defwidget cputemp [] 
  (box 
     :spacing 30
@@ -52,16 +56,25 @@
 
 
 ;; battery
-(defpoll BATICON :interval "5s" `scripts/battery --icon`)
-(defpoll BATPERC :interval "5s" `scripts/battery --perc`)
-(defpoll BATCHARGE :interval "5s" `scripts/is-charging`)
+(defpoll BATPERC 
+  :interval "5s" 
+  `scripts/battery/battery-percent`)
+
+(defpoll BATCHARGE 
+  :interval "5s" 
+  `scripts/battery/is-charging`)
+
+(defpoll BATTIMEREMAIN 
+  :interval "5s" 
+  `scripts/battery/time-remaining`)
+
 
 
 (defwidget battery []
   (box 
-    :class { BATPERC > 98 ? "battery-bar-full" : "battery-bar"}
+    :class { BATPERC > 97 ? "battery-bar-full" : "battery-bar"}
     :spacing 0
-    :tooltip "battery ${BATPERC}% full"
+    :tooltip "battery ${BATPERC}% ${BATTIMEREMAIN}"
     (label 
       :halign "end"
       :class { BATCHARGE ? "charging" : "not-charging"}
