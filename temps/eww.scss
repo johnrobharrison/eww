@@ -1,0 +1,49 @@
+* {
+  all: unset;
+}
+
+$background: rgba(40, 40, 40, 1);
+$border: rgba(20, 20, 20, 1);
+$foreground: rgb(235, 219, 178);
+$foreground-darker: rgba(192, 182, 156, 0.8);
+$accent: #98971a;
+$background-lighter: rgba(70, 70, 70, 0.95);
+$warning: #caa500;
+$danger: #ce4c48;
+
+.container {
+  font-family: Overpass, Noto Fonts Emoji;
+  background-color: $background;
+  color: $foreground;
+  font-size: 10pt;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 20px;
+  margin: 0 50px 50px 50px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.temp{
+  min-width: 110px;
+  min-height: 100px;
+  background-color: $background-lighter;
+  border-radius: 10px;
+  font-size: 12pt;
+  padding: 10px;
+}
+
+.temp-icon{
+  background-image: url('icons/temp.png');
+  min-height: 64px;
+  min-width: 50px;
+  margin-right: 10px;
+}
+.temp-label{
+  font-size: 12pt;
+}
+
+.cpu,
+.wifi
+{
+  margin-right: 20px;
+}

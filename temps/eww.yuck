@@ -1,0 +1,109 @@
+(defwidget container []
+  (box 
+    :class "container" 
+    :orientation "h"
+    :space-evenly true
+    (cpu)
+    (wifi)
+    (nvme)
+  )
+)
+
+;; containing temps
+(defwindow temps
+  :monitor 0
+  :class "contents"
+  :stacking 'fg'
+  :exclusive true
+  :windowtype "dock"
+	:focusable false
+  :geometry (geometry 
+              :x "110px"
+              :y "0"
+              :width "100px"
+              :height "50px"
+              :anchor "top right")
+  (container))
+
+
+;; cpu
+(defpoll CPUTEMP 
+  :interval "2s" 
+  `../scripts/temps --cpu`)
+
+(defwidget cpu []
+  (box 
+    :class "temp cpu" 
+    (label 
+      :valign 'center'
+      :class "temp-icon"
+    )
+    (box
+      :orientation "v"
+      :space-evenly: false
+      (label
+        :text "CPU"
+        :class "temp-label"
+      )
+      (label
+        :text "${CPUTEMP}°"
+      )
+    )
+
+  )
+)
+
+
+;; wifi
+(defpoll WIFITEMP 
+  :interval "2s" 
+  `../scripts/temps --wifi`)
+
+(defwidget wifi []
+  (box 
+    :class "temp wifi"  
+    (label 
+      :valign 'center'
+      :class "temp-icon"
+    )
+    (box
+      :orientation "v"
+      :space-evenly: false
+      (label
+        :text "WiFi"
+        :class "temp-label"
+      )
+      (label
+        :text "${WIFITEMP}°"
+      )
+    )
+
+  )
+)
+
+;; nvme
+(defpoll NVMETEMP 
+  :interval "2s" 
+  `../scripts/temps --nvme`)
+
+(defwidget nvme []
+  (box 
+    :class "temp" 
+    (label 
+      :valign 'center'
+      :class "temp-icon"
+    )
+    (box
+      :orientation "v"
+      :space-evenly: false
+      (label
+        :text "NVME"
+        :class "temp-label"
+      )
+      (label
+        :text "${NVMETEMP}°"
+      )
+    )
+
+  )
+)

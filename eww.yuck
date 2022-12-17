@@ -43,10 +43,12 @@
   `scripts/temps --cpu`)
 (defwidget cputemp [] 
  (box 
-    (box 
+    (eventbox
+      :onhover "/home/shin/.config/eww/temps/launch-temps.sh"
+      :onhoverlost "/home/shin/.config/eww/temps/launch-temps.sh"
       (label 
         :class "temps" 
-        :text CPUTEMP
+        :text "${CPUTEMP}°"
       )
     )
   )

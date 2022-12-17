@@ -1,10 +1,12 @@
 #!/bin/bash
 
-GPU="$(sensors -j | jq '."coretemp-isa-0000"."Core 0"."temp2_input"')"
-CPU="$(sensors -j | jq '."coretemp-isa-0000"."Core 0"."temp2_input"')"
-
-if [[ $1 == '--gpu' ]]; then
-	echo "${GPU}°"
-elif [[ $1 == '--cpu' ]]; then
-	echo "${CPU}°"
+if [[ $1 == '--cpu' ]]; then
+	CPU="$(sensors -j | jq '."coretemp-isa-0000"."Core 0"."temp2_input"')"
+	echo "${CPU}"
+elif [[ $1 == '--wifi' ]]; then
+	WIFI="$(sensors -j | jq '."iwlwifi_1-virtual-0"."temp1"."temp1_input"')"
+	echo "${WIFI}"
+elif [[ $1 == '--nvme' ]]; then
+	WIFI="$(sensors -j | jq '."nvme-pci-0100"."Composite"."temp1_input"')"
+	echo "${WIFI}"
 fi
