@@ -65,6 +65,7 @@ $background-lighter: rgba(70, 70, 70, 0.95);
   background-color: $background-lighter;
   border-radius: 7px;
   padding: 5px;
+  margin-top: 10px;
 }
 
 calender {
@@ -85,4 +86,14 @@ calendar.highlight {
 
 calendar:indeterminate {
   color: $foreground-darker;
+}
+
+// image
+.image{
+  margin-right: -35px;
+  background-image: url('icons/sonic.png');
+  min-height: 200px;
+  min-width: 300px;
+  margin-top: 10px;
+  margin-bottom: -45px;
 }
