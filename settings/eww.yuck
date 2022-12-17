@@ -3,15 +3,26 @@
   :interval "10s" 
   `pamixer --get-volume`)
 
+(defpoll VOLMUTED
+  :interval "1s" 
+  `pactl get-sink-mute @DEFAULT_SINK@`)
+
+
 
 (defwidget volume []
   (box 
-    :class "scroller"
+    :class { 
+        (VOLMUTED == "Mute: yes" ? "disabled-scroller" : "scroller" )
+    }
     :spacing 0
     :space-evenly false
-    (label 
-      :halign "end"
-      :class "volume-icon"
+    (button
+      :class "vol-icon"
+      :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+      (label 
+        :halign "end"
+        :class "volume-icon"
+      )
     )
     (scale
       :min 0
