@@ -141,3 +141,14 @@ button:focus {
 }
 
 
+// vm
+.vms{
+  min-width: 24px;
+  padding: 9px;
+}
+.vm-open{
+  background-image: url('icons/windows.png');
+}
+.vm-closed{
+  background-image: url('icons/windows-off.png');
+}

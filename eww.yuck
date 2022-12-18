@@ -127,6 +127,9 @@
 
       ;; cpu temp
       (cputemp)
+
+      ;; vm
+      (vms)
       
       ;; clock
       (button
@@ -137,6 +140,39 @@
     )
   )
 )
+
+
+
+;; vm
+(defpoll VMOPEN 
+  :interval "1s" 
+  `scripts/vm-running`)
+
+(defwidget vms [] 
+  (box 
+    :class "vms"
+    :onclick '/home/shin/.config/eww/settings/launch-settings.sh'
+    (vm)
+  )
+)
+
+(defwidget vm []
+  (box 
+    :class {
+      VMOPEN ? "vm-open": "vm-closed"
+    }
+  )
+)
+
+
+
+
+
+
+
+
+
+
 
 
 ;; containing window
