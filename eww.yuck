@@ -90,6 +90,9 @@
       :max 100
       :value BATPERC
     )
+    (label
+      :text BATPERC
+    )
   )
 )
 
