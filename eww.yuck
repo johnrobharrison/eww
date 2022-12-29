@@ -1,10 +1,5 @@
 (include "./sway_widget.yuck")
 
-;; brightness
-(defpoll BACKLIGHT 
-  :interval "5s" 
-  `light -G`)
-
 
 ;; bar config
 (defwidget bar []
@@ -15,12 +10,13 @@
       :space-evenly false 
       :halign "start"
       :hexpand true
-      (left_eDP-1)
+      (left_DP-1)
       (title)
     )
     (settings)
   )
 )
+
 
 
 ;; window title
@@ -55,49 +51,6 @@
 )
 
 
-;; battery
-(defpoll BATPERC 
-  :interval "10s" 
-  `scripts/battery/battery-percent`)
-
-(defpoll BATCHARGE 
-  :interval "3s" 
-  `scripts/battery/is-charging`)
-
-(defpoll BATTIMEREMAIN 
-  :interval "5s" 
-  `scripts/battery/time-remaining`)
-
-(defpoll BATCLASS 
-  :interval "10s" 
-  `scripts/battery/battery-class`)
-
-
-(defwidget battery []
-  (box 
-    :class { 
-        (BATPERC > 97 ? "battery-bar-full" : "battery-bar" )
-    }
-    :spacing 0
-    :tooltip "battery ${BATPERC}% ${BATTIMEREMAIN}"
-    (label 
-      :halign "end"
-      :class { BATCHARGE == "Discharging" ? "not-charging" : "charging"}
-      :text "${ BATCHARGE == "Discharging" ? '' : '⚡'}"
-    )
-    (scale
-      :min 0
-      :max 100
-      :value BATPERC
-    )
-    (label
-      :text BATPERC
-    )
-  )
-)
-
-
-
 
 ;; clock
 (defpoll time :interval "10s" "date '+ %Y-%m-%d  %H:%M'")
@@ -122,20 +75,18 @@
       :spacing 10
       :space-evenly "false" 
 
-      ;; battery
-      (battery)
-
       ;; cpu temp
-      (cputemp)
 
-      ;; vm
-      (vms)
-      
-      ;; clock
+      ;; clock + dropdown
       (button
-        :class "settings-button"
+        :class "clickable-button"
         :onclick '/home/shin/.config/eww/settings/launch-settings.sh'
-        (clock)
+
+        (box
+          (cputemp)
+
+          (clock)
+        )
       )
     )
   )
@@ -146,13 +97,17 @@
 ;; vm
 (defpoll VMOPEN 
   :interval "1s" 
+  :initial "false"
   `scripts/vm-running`)
 
 (defwidget vms [] 
   (box 
     :class "vms"
-    :onclick '/home/shin/.config/eww/settings/launch-settings.sh'
-    (vm)
+    (button
+      :class "clickable-button"
+      :onclick '/home/shin/.config/eww/vms/launch-vms.sh'
+      (vm)
+    )
   )
 )
 
@@ -167,16 +122,8 @@
 
 
 
-
-
-
-
-
-
-
-
 ;; containing window
-(defwindow main_bar_eDP-1
+(defwindow main_bar_DP-1
   :monitor 0
   :exclusive true
   :windowtype "dock"
@@ -188,5 +135,3 @@
     :anchor "top center")
   (bar))
 
-
-  

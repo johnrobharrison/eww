@@ -1,64 +1,3 @@
-;; volume
-(defpoll VOLPERCENT 
-  :interval "10s" 
-  `pamixer --get-volume`)
-
-(defpoll VOLMUTED
-  :interval "1s" 
-  `pactl get-sink-mute @DEFAULT_SINK@`)
-
-
-
-(defwidget volume []
-  (box 
-    :class { 
-        (VOLMUTED == "Mute: yes" ? "disabled-scroller" : "scroller" )
-    }
-    :spacing 0
-    :space-evenly false
-    (button
-      :class "vol-icon"
-      :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-      (label 
-        :halign "end"
-        :class "volume-icon"
-      )
-    )
-    (scale
-      :min 0
-      :max 100
-      :value VOLPERCENT
-      :active "true"
-      :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
-    )
-  )
-)
-
-
-;; BACKLIGHT
-(defpoll BLPERCENT 
-  :interval "10s" 
-  `light`)
-
-(defwidget backlight []
-  (box 
-    :class "scroller"
-    :spacing 0
-    :space-evenly false
-    (label 
-      :halign "end"
-      :class "backlight-icon"
-    )
-    (scale
-      :min 0
-      :max 100
-      :value BLPERCENT
-      :active "true"
-      :onchange "light -S {}"
-    )
-  )
-)
-
 
 
 (defwidget container []
@@ -66,8 +5,7 @@
     :class "container" 
     :orientation "v"
     :space-evenly false
-    (volume)
-    (backlight)
+    (temps)
     (cal)
     (bottomimage)
   )
@@ -122,3 +60,117 @@
   )
 )
 
+
+
+;; TEMPS
+
+
+
+(defwidget temps []
+  (box 
+    :class "temps" 
+    :orientation "h"
+    :space-evenly false
+    (cpu)
+    (gpu)
+    (nvme1)
+    (nvme2)
+  )
+)
+
+
+;; cpu
+(defpoll CPUTEMP 
+  :interval "2s" 
+  `../scripts/temps --cpu`)
+
+(defwidget cpu []
+  (box 
+    :class "temp cpu" 
+    (box
+      :orientation "v"
+      :space-evenly: false
+      (label
+        :text "CPU"
+        :class "temp-label"
+      )
+      (label
+        :text "${CPUTEMP}°"
+      )
+    )
+
+  )
+)
+
+
+;; nvme
+(defpoll GPUTEMP 
+  :interval "2s" 
+  `../scripts/temps --gpu`)
+
+(defwidget gpu []
+  (box 
+    :class "temp" 
+    (box
+      :orientation "v"
+      :space-evenly: false
+      (label
+        :text "GPU"
+        :class "temp-label"
+      )
+      (label
+        :text "${GPUTEMP}°"
+      )
+    )
+
+  )
+)
+
+
+;; nvme
+(defpoll NVME1 
+  :interval "2s" 
+  `../scripts/temps --nvme1`)
+
+(defwidget nvme1 []
+  (box 
+    :class "temp" 
+    (box
+      :orientation "v"
+      :space-evenly: false
+      (label
+        :text "root"
+        :class "temp-label"
+      )
+      (label
+        :text "${NVME1}°"
+      )
+    )
+
+  )
+)
+
+
+
+;; nvme
+(defpoll NVME2
+  :interval "2s" 
+  `../scripts/temps --nvme2`)
+
+(defwidget nvme2 []
+  (box 
+    :class "temp work" 
+    (box
+      :orientation "v"
+      :space-evenly: false
+      (label
+        :text "work"
+        :class "temp-label"
+      )
+      (label
+        :text "${NVME1}°"
+      )
+    )
+
+  )
+)

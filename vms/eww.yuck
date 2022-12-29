@@ -1,0 +1,109 @@
+;; running
+(defpoll VMOPEN 
+  :interval "1s" 
+  :initial "false"
+  `scripts/vm-running`)
+
+
+
+(defwidget running []
+  (box 
+    :space-evenly false
+    :class "running"
+    (label 
+      :halign "start"
+      :class "${VMOPEN ? 'vm-open' : 'vm-closed'} vm"
+    )
+    (label
+      :text "Windows ${VMOPEN ? 'is trying its best' : 'is not running'}"
+    )
+  )
+)
+
+
+(defwidget toggle []
+  (box 
+    :class "toggle"
+    :space-evenly false
+    :class "clickable-button"
+    :halign "center"
+    (button
+      :onclick "scripts/vm-toggle"
+      (box
+        (label
+          :class "${VMOPEN ? 'end' : 'start'}"
+        )
+      )
+      
+    )
+
+  )
+)
+
+
+(defwidget rdp []
+  (box 
+    :class "rdp"
+    :space-evenly false
+    :class "clickable-button"
+    :halign "center"
+    :visible VMOPEN
+    (button
+      :onclick "scripts/vm-rdp"
+      :space-evenly false
+      (box
+        :space-evenly false
+        (label
+          :class "rdp"
+        )
+        (label
+          :class "rdp-label"
+          :text "Remote Desktop Connection"
+        )
+      )
+    )
+
+  )
+)
+
+
+
+
+(defwidget container []
+  (box 
+    :class "container" 
+    :orientation "v"
+    :space-evenly false
+    (running)
+    (toggle)
+    (rdp)
+  )
+)
+
+;; containing window
+(defwindow vms
+  :monitor 0
+  :class "contents"
+  :stacking 'fg'
+  :exclusive true
+  :windowtype "dock"
+	:focusable false
+  :geometry (geometry 
+              :x "180px"
+              :y "0"
+              :width "100px"
+              :height "50px"
+              :anchor "top right")
+  (container))
+
+
+
+;; image
+(defwidget bottomimage []
+  (label 
+    :halign "end"
+    :valign "center"
+    :class "image"
+  )
+)
+

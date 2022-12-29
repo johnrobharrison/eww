@@ -18,7 +18,7 @@ $danger: #ce4c48;
 .eww-bar{
   background-color: $background;
   color: $foreground;
-  font-size: 10pt;
+  font-size: 11pt;
 }
 
 // title
@@ -47,13 +47,8 @@ $danger: #ce4c48;
   margin-right: -5px;
 }
 
-.temps{
-  padding-left: 15px;
-  padding-right: 10px;
-  min-width: 40px;
-}
-
 .clock{
+  padding-right: 20px;
 }
 
 tooltip{
@@ -64,12 +59,11 @@ tooltip{
   background-color: $background-lighter;
 }
 
-.settings-button {
-  min-height: 25px;
-  padding: 5px 10px 2px 7px;
-  margin: 5px -5px 5px 5px;
+.clickable-button {
+  min-height: 24px;
+  min-width: 24px;
+  padding: 5px;
   border-radius: 10px;
-  margin-right: 10px;
 }
 
 button{
@@ -81,63 +75,6 @@ button:hover {
 }
 button:focus {
   background-color: $accent;
-}
-
-
-
-
-
-// battery
-.battery-bar scale highlight 
-{
-  all: unset;
-  background-color: $accent;
-  border-radius: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.battery-bar-warning scale highlight 
-{
-  all: unset;
-  background-color: $warning;
-  border-radius: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.battery-bar-danger scale highlight 
-{
-  all: unset;
-  background-color: $danger;
-  border-radius: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.battery-bar-full scale highlight {
-  all: unset;
-  background-color: $accent;
-  border-radius: 5px;
-}
-
-.battery-bar scale trough, 
-.battery-bar-full scale trough 
-.battery-bar-warning scale trough 
-.battery-bar-danger scale trough 
-{
-  all: unset;
-  background-color: $background-lighter;
-  min-height: 20px;
-  min-width: 80px;
-  border-radius: 5px;
-}
-
-.battery-bar .charging, 
-.battery-bar-full .charging,
-.battery-bar-warning .charging,
-.battery-bar-danger .charging
-{
-  min-width: 10px;
-  margin-right: 5px;
 }
 
 
