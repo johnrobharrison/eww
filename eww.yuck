@@ -92,18 +92,8 @@
       :class { BATCHARGE == "Discharging" ? "not-charging" : "charging"}
       :text "${ BATCHARGE == "Discharging" ? '' : '⚡'}"
     )
-    (transform
-      :scale-x "50%"
-      :scale-y "50%"
-      :translate-y "20px"
-      (circular-progress
-        :start-at 0
-        :class "pacman"
-        :value BATPERC
-        :thickness 24
-      )
-    )
     (label
+      :class "battery"
       :text "${BATPERC}%"
     )
   )
