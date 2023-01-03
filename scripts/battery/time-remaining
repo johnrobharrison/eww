@@ -1,0 +1,16 @@
+#!/bin/bash
+
+## Get battery info
+REMAIN="$(acpi | awk -F ' ' 'END {print $5}' )"
+TYPE="$(acpi | awk -F ' ' 'END {print $6}' )"
+
+
+
+if [ "$TYPE" == "until" ]; then
+    echo $REMAIN "until charged"
+else
+    echo $REMAIN "left"
+fi
+
+
+

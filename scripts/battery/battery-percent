@@ -1,0 +1,4 @@
+#!/bin/bash
+
+## Get battery info
+acpi | awk -F ' ' 'END {print $4}' | tr -d \% | tr -d \,

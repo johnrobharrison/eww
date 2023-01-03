@@ -61,6 +61,59 @@
 )
 
 
+;; battery
+(defpoll BATPERC 
+  :interval "10s" 
+  :initial 100
+  `scripts/battery/battery-percent`)
+
+(defpoll BATCHARGE 
+  :interval "3s" 
+  `scripts/battery/is-charging`)
+
+(defpoll BATTIMEREMAIN 
+  :interval "5s" 
+  `scripts/battery/time-remaining`)
+
+(defpoll BATCLASS 
+  :interval "10s" 
+  `scripts/battery/battery-class`)
+
+
+(defwidget battery []
+  (box 
+    :class { 
+        (BATPERC > 97 ? "battery-bar-full" : "battery-bar" )
+    }
+    :spacing 0
+    :tooltip "battery ${BATPERC}% ${BATTIMEREMAIN}"
+    (label 
+      :halign "end"
+      :class { BATCHARGE == "Discharging" ? "not-charging" : "charging"}
+      :text "${ BATCHARGE == "Discharging" ? '' : '⚡'}"
+    )
+    (transform
+      :scale-x "50%"
+      :scale-y "50%"
+      :translate-y "20px"
+      (circular-progress
+        :start-at 0
+        :class "pacman"
+        :value BATPERC
+        :thickness 24
+      )
+    )
+    (label
+      :text "${BATPERC}%"
+    )
+  )
+)
+
+
+
+
+
+
 ;; settings
 (defpoll SETTINGSOPEN 
   :interval "1s" `settings/settings-opened`)
@@ -72,6 +125,7 @@
     (box 
       :spacing 10
       :space-evenly false
+      (battery)
       (cputemp)
       (button
         :class "clickable-button"

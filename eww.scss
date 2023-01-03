@@ -60,3 +60,15 @@ button:active {
 .cpu-temp{
   padding-left: 5px;
 }
+
+tooltip{
+  font-size: 11pt;
+  padding: 40px;
+  margin: 20px;
+  border-radius: 7px;
+  background-color: $background-lighter;
+}
+
+.pacman{
+  color: rgba(252, 233, 63, 0.63);
+}
