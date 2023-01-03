@@ -49,7 +49,7 @@
     :halign "center"
     :visible VMOPEN
     (button
-      :onclick "scripts/vm-rdp"
+      :onclick "/mnt/work/vms/connnect-windows.sh"
       :space-evenly false
       (box
         :space-evenly false

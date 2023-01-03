@@ -41,6 +41,13 @@
 	   )
 )
 
+
+(defwidget left_DP-3 []
+	(box :halign "start" :space-evenly false
+	(workspaces :wp1 DP-3-1 :wp2 DP-3-2 :wp3 DP-3-3 :wp4 DP-3-4 :wp5 DP-3-5 :wp6 DP-3-6 :wp7 DP-3-7 :wp8 DP-3-8 :wp9 DP-3-9  :wp10 DP-3-10  :output wp-DP-3-visible :halign "left")
+	)
+)
+
 (defwidget left_DP-4 []
 	   (box :halign "start" :space-evenly false
 	   (label :class "menu" :text "")
@@ -78,6 +85,17 @@
 (defvar DP-2-9 false)
 (defvar DP-2-10 false)
 
+(defvar DP-3-1 false)
+(defvar DP-3-2 false)
+(defvar DP-3-3 false)
+(defvar DP-3-4 false)
+(defvar DP-3-5 false)
+(defvar DP-3-6 false)
+(defvar DP-3-7 false)
+(defvar DP-3-8 false)
+(defvar DP-3-9 false)
+(defvar DP-3-10 false)
+
 (defvar DP-4-1 false)
 (defvar DP-4-2 false)
 (defvar DP-4-3 false)
@@ -103,9 +121,9 @@
 
 (defvar wp-DP-1-visible "")
 (defvar wp-DP-2-visible "")
+(defvar wp-DP-3-visible "")
 (defvar wp-DP-4-visible "")
 (defvar wp-DP-5-visible "")
-
 
 
 (defvar wp-focused "1")

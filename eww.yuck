@@ -2,7 +2,7 @@
 
 
 ;; bar config
-(defwidget bar []
+(defwidget bar-right []
   (box 
     :class "eww-bar"
     :space-evenly false 
@@ -13,9 +13,25 @@
       (left_DP-1)
       (title)
     )
+    (vms)
     (settings)
   )
 )
+
+(defwidget bar-left []
+  (box 
+    :class "eww-bar"
+    :space-evenly false 
+    (box 
+      :space-evenly false 
+      :halign "start"
+      :hexpand true
+      (title)
+    )
+    (settings)
+  )
+)
+
 
 
 
@@ -39,13 +55,9 @@
   `scripts/temps --cpu`)
 (defwidget cputemp [] 
  (box 
-    (eventbox
-      :onhover "/home/shin/.config/eww/temps/launch-temps.sh"
-      :onhoverlost "/home/shin/.config/eww/temps/launch-temps.sh"
-      (label 
-        :class "temps" 
-        :text "${CPUTEMP}°"
-      )
+    (label 
+      :class "cpu-temp" 
+      :text "${CPUTEMP}°"
     )
   )
 )
@@ -75,8 +87,6 @@
       :spacing 10
       :space-evenly "false" 
 
-      ;; cpu temp
-
       ;; clock + dropdown
       (button
         :class "clickable-button"
@@ -84,7 +94,6 @@
 
         (box
           (cputemp)
-
           (clock)
         )
       )
@@ -104,6 +113,7 @@
   (box 
     :class "vms"
     (button
+      :text "hi"
       :class "clickable-button"
       :onclick '/home/shin/.config/eww/vms/launch-vms.sh'
       (vm)
@@ -122,7 +132,7 @@
 
 
 
-;; containing window
+;; left (main) monitor
 (defwindow main_bar_DP-1
   :monitor 0
   :exclusive true
@@ -133,5 +143,18 @@
     :y "0%"
     :width "100%"
     :anchor "top center")
-  (bar))
+  (bar-right))
+
+(defwindow main_bar_DP-3
+  :monitor 1
+  :exclusive true
+  :windowtype "dock"
+  :focusable false
+  :geometry (geometry 
+    :x "0%"
+    :y "0%"
+    :width "100%"
+    :anchor "top center")
+  (bar-left))
+
 
