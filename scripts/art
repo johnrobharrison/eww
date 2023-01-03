@@ -1,0 +1,2 @@
+#!/bin/bash
+playerctl metadata | grep "spotify mpris:artUrl" |  awk '{ print $3 }'

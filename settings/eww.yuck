@@ -87,15 +87,20 @@
   )
 )
 
-;; image
-(defwidget bottomimage []
+
+;; spotify
+(defpoll ALBUMART 
+  :interval "1s" `../scripts/art`)
+
+(defwidget album []
   (label 
-    :halign "end"
+    :label "hi"
+    :halign "center"
     :valign "center"
-    :class "image"
+    :class "big-image"
+    :style "background-image: url('${ALBUMART}')" 
   )
 )
-
 
 
 ;; TEMPS
@@ -169,7 +174,7 @@
     (backlight)
     (temps)
     (cal)
-    (bottomimage)
+    (album)
   )
 )
 
