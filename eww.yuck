@@ -10,7 +10,7 @@
       :space-evenly false 
       :halign "start"
       :hexpand true
-      (left_DP-1)
+      (eDP-1)
       (title)
     )
     (settings)
@@ -84,7 +84,7 @@
     :halign "end"
     (box 
       :spacing 10
-      :space-evenly "false" 
+      :space-evenly false
 
       ;; clock + dropdown
       (button
@@ -92,8 +92,6 @@
         :onclick '/home/shin/.config/eww/settings/launch-settings.sh'
 
         (box
-          (volume)
-          (backlight)
           (cputemp)
           (clock)
         )
