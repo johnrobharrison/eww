@@ -104,10 +104,38 @@
     :class "temps" 
     :orientation "h"
     :space-evenly false
+    (label 
+      :halign "end"
+      :class "temp-icon"
+    )
     (cpu)
-    (nvme)
   )
 )
+
+
+
+(defwidget backlight []
+  (box 
+    :class "scroller"
+    :spacing 0
+    :space-evenly false
+    (label 
+      :halign "end"
+      :class "backlight-icon"
+    )
+    (scale
+      :min 0
+      :max 100
+      :value BLPERCENT
+      :active "true"
+      :onchange "light -S {}"
+    )
+  )
+)
+
+
+
+
 
 
 ;; cpu
@@ -118,36 +146,14 @@
 (defwidget cpu []
   (box 
     :class "temp cpu" 
+    :space-evenly true
     (box
-      :orientation "v"
+      :orientation "h"
       (label
-        :text "CPU"
-        :class "temp-label"
+        :class "amd-icon"
       )
       (label
         :text "${CPUTEMP}°"
-      )
-    )
-
-  )
-)
-
-
-;; nvme
-(defpoll NVME 
-  :interval "2s" `../scripts/temps --nvme`)
-
-(defwidget nvme []
-  (box 
-    :class "temp" 
-    (box
-      :orientation "v"
-      (label
-        :text "NVME"
-        :class "temp-label"
-      )
-      (label
-        :text "${NVME}°"
       )
     )
 
@@ -164,6 +170,7 @@
     :space-evenly false
     (volume)
     (backlight)
+    (temps)
     (cal)
     (bottomimage)
   )

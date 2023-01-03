@@ -10,12 +10,13 @@ $danger: #d37572;
 
 * {
   all: unset;
+  font-family: Helvetica Now, Noto Fonts Emoji;
+  color: $foreground;
+  font-weight: 600;
 }
 
 .container {
-  font-family: Overpass, Noto Fonts Emoji;
   background-color: $background;
-  color: $foreground;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 20px;
@@ -26,42 +27,59 @@ $danger: #d37572;
 // sliders
 .volume-icon {
   background-image: url('icons/speaker.png');
-  min-height: 32px;
-  min-width: 32px;
-  margin-right: 20px;
 }
 
 .backlight-icon {
   background-image: url('icons/brightness.png');
+}
+
+.temp-icon {
+  background-image: url('icons/temp.png');
+  margin-bottom: 10px;
+}
+
+.amd-icon {
+  background-image: url('icons/amd.png');
+  min-width: 65px;
+  margin-top: -10px;
+}
+
+.temp-icon,
+.backlight-icon,
+.volume-icon {
   min-height: 32px;
   min-width: 32px;
   margin-right: 20px;
 }
 
+.cpu{
+  margin-top: -5px;
+}
+
+
 .scroller,
-.disabled-scroller
-{
+.disabled-scroller {
   margin-bottom: 20px;
 }
 
 
-.scroller scale highlight 
-{
+.scroller scale highlight,
+.disabled-scroller scale highlight {
   all: unset;
-  background-color: $accent;
   border-radius: 5px;
 }
-.disabled-scroller scale highlight 
-{
-  all: unset;
+
+.disabled-scroller scale highlight {
   background-color: $danger;
-  border-radius: 5px;
+}
+
+.scroller scale highlight {
+  background-color: $accent;
 }
 
 
 .scroller scale trough,
-.disabled-scroller scale trough
-{
+.disabled-scroller scale trough {
   all: unset;
   background-color: $background-lighter;
   min-height: 20px;
@@ -90,7 +108,7 @@ calendar.highlight {
 
 
 // image
-.image{
+.image {
   margin-right: -35px;
   background-image: url('icons/sonic.png');
   min-height: 200px;
