@@ -72,16 +72,11 @@
     (box 
       :spacing 10
       :space-evenly false
-
-      ;; clock + dropdown
+      (cputemp)
       (button
         :class "clickable-button"
         :onclick '/home/shin/.config/eww/settings/launch-settings.sh'
-
-        (box
-          (cputemp)
-          (clock)
-        )
+        (clock)
       )
     )
   )

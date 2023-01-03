@@ -38,11 +38,6 @@ $danger: #d37572;
   margin-bottom: 10px;
 }
 
-.amd-icon {
-  background-image: url('icons/amd.png');
-  min-width: 65px;
-  margin-top: -10px;
-}
 
 .temp-icon,
 .backlight-icon,
@@ -52,8 +47,8 @@ $danger: #d37572;
   margin-right: 20px;
 }
 
-.cpu{
-  margin-top: -5px;
+.temp-cpu{
+  margin-top: -10px;
 }
 
 

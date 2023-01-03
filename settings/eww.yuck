@@ -145,13 +145,10 @@
 
 (defwidget cpu []
   (box 
-    :class "temp cpu" 
+    :class "temp-cpu" 
     :space-evenly true
     (box
       :orientation "h"
-      (label
-        :class "amd-icon"
-      )
       (label
         :text "${CPUTEMP}°"
       )
