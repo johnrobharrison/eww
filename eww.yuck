@@ -92,6 +92,8 @@
         :onclick '/home/shin/.config/eww/settings/launch-settings.sh'
 
         (box
+          (volume)
+          (backlight)
           (cputemp)
           (clock)
         )
@@ -102,37 +104,9 @@
 
 
 
-;; vm
-(defpoll VMOPEN 
-  :interval "1s" 
-  :initial "false"
-  `scripts/vm-running`)
-
-(defwidget vms [] 
-  (box 
-    :class "vms"
-    (button
-      :text "hi"
-      :class "clickable-button"
-      :onclick '/home/shin/.config/eww/vms/launch-vms.sh'
-      (vm)
-    )
-  )
-)
-
-(defwidget vm []
-  (box 
-    :class {
-      VMOPEN ? "vm-open": "vm-closed"
-    }
-  )
-)
-
-
-
 
 ;; left (main) monitor
-(defwindow main_bar_DP-1
+(defwindow main_bar_eDP-1
   :monitor 0
   :exclusive true
   :windowtype "dock"
@@ -143,17 +117,3 @@
     :width "100%"
     :anchor "top center")
   (bar-right))
-
-(defwindow main_bar_DP-3
-  :monitor 1
-  :exclusive true
-  :windowtype "dock"
-  :focusable false
-  :geometry (geometry 
-    :x "0%"
-    :y "0%"
-    :width "100%"
-    :anchor "top center")
-  (bar-left))
-
-

@@ -1,3 +1,63 @@
+;; volume
+(defpoll VOLPERCENT 
+  :interval "10s" 
+  `pamixer --get-volume`)
+
+(defpoll VOLMUTED
+  :interval "1s" 
+  `pactl get-sink-mute @DEFAULT_SINK@`)
+
+
+
+(defwidget volume []
+  (box 
+    :class { 
+        (VOLMUTED == "Mute: yes" ? "disabled-scroller" : "scroller" )
+    }
+    :spacing 0
+    :space-evenly false
+    (button
+      :class "vol-icon"
+      :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+      (label 
+        :halign "end"
+        :class "volume-icon"
+      )
+    )
+    (scale
+      :min 0
+      :max 100
+      :value VOLPERCENT
+      :active "true"
+      :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+    )
+  )
+)
+
+
+;; BACKLIGHT
+(defpoll BLPERCENT 
+  :interval "10s" 
+  `light`)
+
+(defwidget backlight []
+  (box 
+    :class "scroller"
+    :spacing 0
+    :space-evenly false
+    (label 
+      :halign "end"
+      :class "backlight-icon"
+    )
+    (scale
+      :min 0
+      :max 100
+      :value BLPERCENT
+      :active "true"
+      :onchange "light -S {}"
+    )
+  )
+)
 
 
 (defwidget container []

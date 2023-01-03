@@ -24,6 +24,56 @@ $danger: #ce4c48;
 }
 
 
+.volume-icon {
+  background-image: url('icons/speaker.png');
+  min-height: 32px;
+  min-width: 32px;
+  margin-right: 20px;
+}
+
+.backlight-icon {
+  background-image: url('icons/brightness.png');
+  min-height: 32px;
+  min-width: 32px;
+  margin-right: 20px;
+}
+
+.scroller,
+.disabled-scroller
+
+ {
+  margin-bottom: 20px;
+}
+
+
+
+.scroller scale highlight 
+{
+  all: unset;
+  background-color: $accent;
+  border-radius: 5px;
+}
+.disabled-scroller scale highlight 
+{
+  all: unset;
+  background-color: $danger;
+  border-radius: 5px;
+}
+
+
+.scroller scale trough,
+.disabled-scroller scale trough
+{
+  all: unset;
+  background-color: $background-lighter;
+  min-height: 20px;
+  min-width: 300px;
+  border-radius: 5px;
+}
+
+
+
+
 // Calendar
 .cal {
   background-color: $background-lighter;
@@ -52,13 +102,6 @@ calendar:indeterminate {
   color: $foreground-darker;
 }
 
-
-.temps {
-  background-color: $background;
-  color: $foreground;
-  font-size: 10pt;
-}
-
 // image
 .image{
   margin-right: -35px;
@@ -67,26 +110,4 @@ calendar:indeterminate {
   min-width: 300px;
   margin-top: 10px;
   margin-bottom: -45px;
-}
-
-.temp{
-  min-width: 60px;
-  min-height: 50px;
-  background-color: $background-lighter;
-  border-radius: 10px;
-  font-size: 12pt;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.temp-label{
-  font-size: 12pt;
-}
-
-.temp
-{
-  margin-right: 20px;
-}
-.work{
-  margin-right: 0;
 }
