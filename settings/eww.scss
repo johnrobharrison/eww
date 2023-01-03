@@ -77,25 +77,17 @@ $danger: #d37572;
   margin-top: 10px;
 }
 
+calendar:indeterminate,
 calender {
   color: $foreground-darker;
 }
 
-calendar:selected {
-  color: $accent;
-}
-
-calendar.header {
-  color: $accent;
-}
-
+calendar:selected,
+calendar.header,
 calendar.highlight {
   color: $accent;
 }
 
-calendar:indeterminate {
-  color: $foreground-darker;
-}
 
 // image
 .image{
