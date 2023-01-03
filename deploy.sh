@@ -1,6 +1,6 @@
 #!/bin/bash
 echo 'Deploying'
-rsync -av -R *  ~/.config/eww
-
 killall eww
-python  ~/.config/eww/sway_eww.py -d &
+rm -rf ~/.config/eww/
+rsync -av -R *  ~/.config/eww
+python  ~/.config/eww/sway_eww.py -d 

@@ -1,7 +1,3 @@
-* {
-  all: unset;
-}
-
 $background-lighter: rgba(70, 70, 70, 0.95);
 $background: rgba(40, 40, 40, 1);
 $border: rgba(20, 20, 20, 1);
@@ -11,20 +7,22 @@ $accent: #98971a;
 $warning: #caa500;
 $danger: #ce4c48;
 
-.main_bar_eDP-1 {
-  font-family: Overpass, Noto Fonts Emoji;
+* {
+  all: unset;
+  font-family: Helvetica Now, Noto Fonts Emoji;
+  font-weight: 600;
+  font-size: 10pt;
 }
 
 .eww-bar{
   background-color: $background;
   color: $foreground;
-  font-size: 11pt;
 }
 
 // title
 .active-window{
-  margin-left: 20px;
-  padding: 12px;
+  margin-left: 10px;
+  padding: 10px;
 }
 
 // workspaces
@@ -32,66 +30,32 @@ $danger: #ce4c48;
   background-color: $accent;
   padding-left: 25px;
   padding-right: 25px;
-  color: black;
+  color: $background;
 }
-.wp-visible{
-  padding-left: 25px;
-  padding-right: 25px;
-}
+
+.wp-visible,
+.wp-focused,
 .wp{
   padding-left: 25px;
   padding-right: 25px;
-}
-
-.settings{
-  margin-right: -5px;
 }
 
 .clock{
   padding-right: 20px;
 }
 
-tooltip{
-  font-size: 11pt;
-  padding: 40px;
-  margin: 20px;
-  border-radius: 7px;
-  background-color: $background-lighter;
-}
-
-.clickable-button {
-  min-height: 24px;
-  min-width: 24px;
-  padding: 5px;
-  border-radius: 10px;
-}
-
 button{
   transition: background-color 100ms linear;
 }
-
 button:hover {
   background-color: $background-lighter;
+  color: $foreground;
 }
-button:focus {
+button:active {
   background-color: $accent;
 }
 
 // temp
-
 .cpu-temp{
-  margin-left: 0;
-  padding-left: 0;
-}
-
-// vm
-.vms{
-  min-width: 24px;
-  padding: 9px;
-}
-.vm-open{
-  background-image: url('icons/windows.png');
-}
-.vm-closed{
-  background-image: url('icons/windows-off.png');
+  padding-left: 5px;
 }

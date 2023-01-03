@@ -1,21 +1,21 @@
-* {
-  all: unset;
-}
-
+$background-lighter: rgba(70, 70, 70, 0.95);
 $background: rgba(40, 40, 40, 1);
 $border: rgba(20, 20, 20, 1);
 $foreground: rgb(235, 219, 178);
-$foreground-darker: rgba(192, 182, 156, 0.8);
+$foreground-darker: rgb(205, 192, 160);
 $accent: #98971a;
-$background-lighter: rgba(70, 70, 70, 0.95);
+
 $warning: #caa500;
-$danger: #ce4c48;
+$danger: #d37572;
+
+* {
+  all: unset;
+}
 
 .container {
   font-family: Overpass, Noto Fonts Emoji;
   background-color: $background;
   color: $foreground;
-  font-size: 10pt;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 20px;
@@ -23,7 +23,7 @@ $danger: #ce4c48;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-
+// sliders
 .volume-icon {
   background-image: url('icons/speaker.png');
   min-height: 32px;
@@ -40,11 +40,9 @@ $danger: #ce4c48;
 
 .scroller,
 .disabled-scroller
-
- {
+{
   margin-bottom: 20px;
 }
-
 
 
 .scroller scale highlight 
@@ -70,9 +68,6 @@ $danger: #ce4c48;
   min-width: 300px;
   border-radius: 5px;
 }
-
-
-
 
 // Calendar
 .cal {

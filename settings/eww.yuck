@@ -1,5 +1,6 @@
 ;; volume
 (defpoll VOLPERCENT 
+  :initial "100"
   :interval "10s" 
   `pamixer --get-volume`)
 
@@ -7,12 +8,10 @@
   :interval "1s" 
   `pactl get-sink-mute @DEFAULT_SINK@`)
 
-
-
 (defwidget volume []
   (box 
     :class { 
-        (VOLMUTED == "Mute: yes" ? "disabled-scroller" : "scroller" )
+      (VOLMUTED == "Mute: yes" ? "disabled-scroller" : "scroller" )
     }
     :spacing 0
     :space-evenly false
@@ -35,10 +34,11 @@
 )
 
 
+
 ;; BACKLIGHT
 (defpoll BLPERCENT 
-  :interval "10s" 
-  `light`)
+  :initial "100"
+  :interval "10s" `light`)
 
 (defwidget backlight []
   (box 
@@ -60,41 +60,17 @@
 )
 
 
-(defwidget container []
-  (box 
-    :class "container" 
-    :orientation "v"
-    :space-evenly false
-    (temps)
-    (cal)
-    (bottomimage)
-  )
-)
-
-;; containing window
-(defwindow settings
-  :monitor 0
-  :class "contents"
-  :stacking 'fg'
-  :exclusive true
-  :windowtype "dock"
-	:focusable false
-  :geometry (geometry 
-              :x "0"
-              :y "0"
-              :width "100px"
-              :height "50px"
-              :anchor "top right")
-  (container))
-
-
 
 ;; calendar
 (defpoll calendar_day 
-  :interval "20h" "date '+%d'")
+  :initial "1"
+  :interval "20h" "date '+%d'"
+)
 
 (defpoll calendar_year 
-  :interval "20h" "date '+%Y'")
+  :initial "2022"
+  :interval "20h" "date '+%Y'"
+)
 
 (defwidget cal []
 	(box 
@@ -123,18 +99,13 @@
 
 
 ;; TEMPS
-
-
-
 (defwidget temps []
   (box 
     :class "temps" 
     :orientation "h"
     :space-evenly false
     (cpu)
-    (gpu)
-    (nvme1)
-    (nvme2)
+    (nvme)
   )
 )
 
@@ -149,7 +120,6 @@
     :class "temp cpu" 
     (box
       :orientation "v"
-      :space-evenly: false
       (label
         :text "CPU"
         :class "temp-label"
@@ -164,46 +134,20 @@
 
 
 ;; nvme
-(defpoll GPUTEMP 
-  :interval "2s" 
-  `../scripts/temps --gpu`)
+(defpoll NVME 
+  :interval "2s" `../scripts/temps --nvme`)
 
-(defwidget gpu []
+(defwidget nvme []
   (box 
     :class "temp" 
     (box
       :orientation "v"
-      :space-evenly: false
       (label
-        :text "GPU"
+        :text "NVME"
         :class "temp-label"
       )
       (label
-        :text "${GPUTEMP}°"
-      )
-    )
-
-  )
-)
-
-
-;; nvme
-(defpoll NVME1 
-  :interval "2s" 
-  `../scripts/temps --nvme1`)
-
-(defwidget nvme1 []
-  (box 
-    :class "temp" 
-    (box
-      :orientation "v"
-      :space-evenly: false
-      (label
-        :text "root"
-        :class "temp-label"
-      )
-      (label
-        :text "${NVME1}°"
+        :text "${NVME}°"
       )
     )
 
@@ -212,25 +156,33 @@
 
 
 
-;; nvme
-(defpoll NVME2
-  :interval "2s" 
-  `../scripts/temps --nvme2`)
-
-(defwidget nvme2 []
+;; containing window
+(defwidget container []
   (box 
-    :class "temp work" 
-    (box
-      :orientation "v"
-      :space-evenly: false
-      (label
-        :text "work"
-        :class "temp-label"
-      )
-      (label
-        :text "${NVME1}°"
-      )
-    )
-
+    :class "container" 
+    :orientation "v"
+    :space-evenly false
+    (volume)
+    (backlight)
+    (cal)
+    (bottomimage)
   )
+)
+
+
+(defwindow settings
+  :monitor 0
+  :stacking 'fg'
+  :exclusive true
+  :windowtype "dock"
+	:focusable false
+  :geometry 
+    (geometry 
+      :x "0"
+      :y "0"
+      :width "100px"
+      :height "50px"
+      :anchor "top right"
+    )
+  (container)
 )

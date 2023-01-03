@@ -1,8 +1,7 @@
 (include "./sway_widget.yuck")
 
-
 ;; bar config
-(defwidget bar-right []
+(defwidget mainbar []
   (box 
     :class "eww-bar"
     :space-evenly false 
@@ -17,25 +16,11 @@
   )
 )
 
-(defwidget bar-left []
-  (box 
-    :class "eww-bar"
-    :space-evenly false 
-    (box 
-      :space-evenly false 
-      :halign "start"
-      :hexpand true
-      (title)
-    )
-    (settings)
-  )
-)
-
-
-
 
 ;; window title
-(defpoll TITLE :interval "50ms" `scripts/title`)
+(defpoll TITLE 
+  :interval "50ms" `scripts/title`)
+
 (defwidget title []
  (box 
     :vexpand true
@@ -48,14 +33,16 @@
   )
 )
 
+
+
 ;; cpu temp
 (defpoll CPUTEMP 
-  :interval "5s" 
-  `scripts/temps --cpu`)
+  :interval "5s" `scripts/temps --cpu`)
+
 (defwidget cputemp [] 
  (box 
     (label 
-      :class "cpu-temp" 
+      :class "cpu-temp"
       :text "${CPUTEMP}°"
     )
   )
@@ -64,7 +51,8 @@
 
 
 ;; clock
-(defpoll time :interval "10s" "date '+ %Y-%m-%d  %H:%M'")
+(defpoll time 
+  :interval "10s" "date '+ %Y-%m-%d  %H:%M'")
 (defwidget clock []
   (box 
     :class "clock" 
@@ -75,8 +63,7 @@
 
 ;; settings
 (defpoll SETTINGSOPEN 
-  :interval "1s" 
-  `settings/settings-opened`)
+  :interval "1s" `settings/settings-opened`)
 
 (defwidget settings [] 
   (box 
@@ -114,4 +101,4 @@
     :y "0%"
     :width "100%"
     :anchor "top center")
-  (bar-right))
+  (mainbar))
