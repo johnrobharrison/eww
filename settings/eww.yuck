@@ -93,12 +93,14 @@
   :interval "1s" `../scripts/art`)
 
 (defwidget album []
-  (label 
-    :label "hi"
-    :halign "center"
-    :valign "center"
-    :class "big-image"
-    :style "background-image: url('${ALBUMART}')" 
+  (button
+    :onclick "firefox ${ALBUMART}"
+    (label 
+      :halign "center"
+      :valign "center"
+      :class "big-image"
+      :style "background-image: url('${ALBUMART}')" 
+    )
   )
 )
 
