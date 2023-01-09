@@ -1,7 +1,7 @@
 (include "./sway_widget.yuck")
 
 ;; bar config
-(defwidget mainbar []
+(defwidget rightbar []
   (box 
     :class "eww-bar"
     :space-evenly false 
@@ -9,7 +9,25 @@
       :space-evenly false 
       :halign "start"
       :hexpand true
-      (eDP-1)
+      (DP-1)
+      (title)
+    )
+    (vms)
+    (settings)
+  )
+)
+
+
+;; bar config
+(defwidget leftbar []
+  (box 
+    :class "eww-bar"
+    :space-evenly false 
+    (box 
+      :space-evenly false 
+      :halign "start"
+      :hexpand true
+      (DP-3)
       (title)
     )
     (settings)
@@ -32,6 +50,33 @@
     )
   )
 )
+
+
+;; vm
+(defpoll VMOPEN 
+  :interval "1s" 
+  :initial "false"
+  `scripts/vm-running`)
+
+(defwidget vms [] 
+  (box 
+    :class "vms"
+    (button
+      :class "clickable-button"
+      :onclick '/home/shin/.config/eww/vms/launch-vms.sh'
+      (vm)
+    )
+  )
+)
+
+(defwidget vm []
+  (box 
+    :class {
+      VMOPEN ? "vm-open": "vm-closed"
+    }
+  )
+)
+
 
 
 
@@ -61,46 +106,6 @@
 )
 
 
-;; battery
-(defpoll BATPERC 
-  :interval "10s" 
-  :initial 100
-  `scripts/battery/battery-percent`)
-
-(defpoll BATCHARGE 
-  :interval "3s" 
-  `scripts/battery/is-charging`)
-
-(defpoll BATTIMEREMAIN 
-  :interval "5s" 
-  `scripts/battery/time-remaining`)
-
-(defpoll BATCLASS 
-  :interval "10s" 
-  `scripts/battery/battery-class`)
-
-
-(defwidget battery []
-  (box 
-    :class { 
-        (BATPERC > 97 ? "battery-bar-full" : "battery-bar" )
-    }
-    :spacing 0
-    :tooltip "battery ${BATPERC}% ${BATTIMEREMAIN}"
-    (label 
-      :halign "end"
-      :class { BATCHARGE == "Discharging" ? "not-charging" : "charging"}
-      :text "${ BATCHARGE == "Discharging" ? '' : '⚡'}"
-    )
-    (label
-      :class "battery"
-      :text "${BATPERC}%"
-    )
-  )
-)
-
-
-
 
 
 
@@ -115,7 +120,6 @@
     (box 
       :spacing 10
       :space-evenly false
-      (battery)
       (cputemp)
       (button
         :class "clickable-button"
@@ -129,8 +133,8 @@
 
 
 
-;; left (main) monitor
-(defwindow main_bar_eDP-1
+;; right monitor
+(defwindow main_bar_DP-1
   :monitor 0
   :exclusive true
   :windowtype "dock"
@@ -140,4 +144,18 @@
     :y "0%"
     :width "100%"
     :anchor "top center")
-  (mainbar))
+  (rightbar))
+
+
+;; left 
+(defwindow main_bar_DP-3
+  :monitor 1
+  :exclusive true
+  :windowtype "dock"
+  :focusable false
+  :geometry (geometry 
+    :x "0%"
+    :y "0%"
+    :width "100%"
+    :anchor "top center")
+  (leftbar))

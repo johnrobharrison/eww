@@ -10,37 +10,45 @@
 )
 
 
-(defwidget eDP-1 []
+(defwidget DP-1 []
 	(box 
 		:halign "start" 
 		:space-evenly false
-    (workspaces 
-	   	:wp1  eDP-1-1 
-      :wp2  eDP-1-2 
-      :wp3  eDP-1-3 
-      :wp4  eDP-1-4 
-      :wp5  eDP-1-5 
-      :wp6  eDP-1-6 
-      :wp7  eDP-1-7 
-      :wp8  eDP-1-8 
-      :wp9  eDP-1-9 
-      :wp10 eDP-1-10 
-      :output wp-eDP-1-visible 
+    (right-workspaces 
+      :wp6  DP-1-6 
+      :wp7  DP-1-7 
+      :wp8  DP-1-8 
+      :wp9  DP-1-9 
+      :wp10 DP-1-10 
+      :output wp-DP-1-6-visible 
       :halign "left"
     )
   )
 )
 
 
-(defwidget workspaces  [output wp1 wp2 wp3 wp4 wp5 wp6 wp7 wp8 wp9 wp10] 
+
+(defwidget DP-3 []
+	(box 
+		:halign "start" 
+		:space-evenly false
+    (left-workspaces 
+	   	:wp1  DP-3-1 
+      :wp2  DP-3-2 
+      :wp3  DP-3-3 
+      :wp4  DP-3-4 
+      :wp5  DP-3-5 
+      :output wp-DP-3-1-visible 
+      :halign "left"
+    )
+  )
+)
+
+
+(defwidget right-workspaces  [output wp6 wp7 wp8 wp9 wp10] 
 	(box 
 		:space-evenly false 
       	:halign "start"
-	   	(wp :toggler wp1 :name wp1-name :output output)
-	   	(wp :toggler wp2 :name wp2-name :output output)
-	   	(wp :toggler wp3 :name wp3-name :output output)
-	   	(wp :toggler wp4 :name wp4-name :output output)
-	   	(wp :toggler wp5 :name wp5-name :output output)
 	   	(wp :toggler wp6 :name wp6-name :output output)
 	   	(wp :toggler wp7 :name wp7-name :output output)
 	   	(wp :toggler wp8 :name wp8-name :output output)
@@ -49,19 +57,46 @@
 	)
 )
 
-(defvar eDP-1-1 false)
-(defvar eDP-1-2 false)
-(defvar eDP-1-3 false)
-(defvar eDP-1-4 false)
-(defvar eDP-1-5 false)
-(defvar eDP-1-6 false)
-(defvar eDP-1-7 false)
-(defvar eDP-1-8 false)
-(defvar eDP-1-9 false)
-(defvar eDP-1-10 false)
+(defwidget left-workspaces  [output wp1 wp2 wp3 wp4 wp5] 
+	(box 
+		:space-evenly false 
+      	:halign "start"
+	   	(wp :toggler wp1 :name wp1-name :output output)
+	   	(wp :toggler wp2 :name wp2-name :output output)
+	   	(wp :toggler wp3 :name wp3-name :output output)
+	   	(wp :toggler wp4 :name wp4-name :output output)
+	   	(wp :toggler wp5 :name wp5-name :output output)
+	)
+)
 
 
-(defvar wp-eDP-1-visible "")
+
+
+
+(defvar DP-3-1 false)
+(defvar DP-3-2 false)
+(defvar DP-3-3 false)
+(defvar DP-3-4 false)
+(defvar DP-3-5 false)
+(defvar DP-1-6 false)
+(defvar DP-1-7 false)
+(defvar DP-1-8 false)
+(defvar DP-1-9 false)
+(defvar DP-1-10 false)
+
+
+(defvar wp-DP-3-1-visible "")
+(defvar wp-DP-3-2-visible "")
+(defvar wp-DP-3-3-visible "")
+(defvar wp-DP-3-4-visible "")
+(defvar wp-DP-3-5-visible "")
+
+(defvar wp-DP-1-6-visible "")
+(defvar wp-DP-1-7-visible "")
+(defvar wp-DP-1-8-visible "")
+(defvar wp-DP-1-9-visible "")
+(defvar wp-DP-1-10-visible "")
+
 
 (defvar wp-focused "1")
 
